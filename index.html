@@ -7,14 +7,21 @@
   </head>
   <body>
     <h1>Esta pagina accedera a la API</h1>
+    <div></div>
     <script>
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
-
+      const div= document.querySelector("div");
+      
       fetch(`https://api-rest-qc7f.onrender.com/usuarios/${id}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("Datos:", data);
+          console.log(data);
+          div.innerHTML = `
+            <p><strong>ID:</strong> ${data.id}</p>
+            <p><strong>Nombre:</strong> ${data.nombre}</p>
+            <p><strong>Email:</strong> ${data.email}</p>
+          `;
         });
     </script>
   </body>
